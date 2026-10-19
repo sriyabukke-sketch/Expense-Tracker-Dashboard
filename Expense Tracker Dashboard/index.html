@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expense Tracker Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <h2>FinTrack</h2>
+      <p class="muted">PERSONAL FINANCE</p>
+      <a class="active" href="#dashboard">▦ Dashboard</a>
+      <a href="#transactions">↔ Transactions</a>
+      <a href="#analytics">▥ Analytics</a>
+      <div class="side-note">
+        <strong>Smart spending</strong>
+        <p>Track your money, one transaction at a time.</p>
+      </div>
+    </aside>
+
+    <main class="main" id="dashboard">
+      <header class="topbar">
+        <div>
+          <p class="muted">OVERVIEW</p>
+          <h1>Expense Dashboard</h1>
+          <p class="muted">Manage your income and expenses.</p>
+        </div>
+        <span class="avatar">FT</span>
+      </header>
+
+      <section class="summary">
+        <article class="card balance-card">
+          <p>Total Balance</p>
+          <h2 id="balance">₹0.00</h2>
+          <small>Income minus expenses</small>
+        </article>
+        <article class="card">
+          <p>Total Income</p>
+          <h2 class="green" id="income">₹0.00</h2>
+          <small>Money received</small>
+        </article>
+        <article class="card">
+          <p>Total Expenses</p>
+          <h2 class="red" id="expenses">₹0.00</h2>
+          <small>Money spent</small>
+        </article>
+      </section>
+
+      <section class="content-grid">
+        <article class="panel">
+          <h2>Add Transaction</h2>
+          <p class="muted">Enter your transaction details below.</p>
+
+          <form id="transactionForm">
+            <label for="description">Description</label>
+            <input id="description" placeholder="e.g. Grocery shopping" required maxlength="80">
+
+            <label for="amount">Amount (₹)</label>
+            <input id="amount" type="number" min="0.01" step="0.01"
+                   placeholder="e.g. 500" required>
+
+            <label for="type">Transaction Type</label>
+            <select id="type" required>
+              <option value="expense">Expense</option>
+              <option value="income">Income</option>
+            </select>
+
+            <label for="category">Category</label>
+            <select id="category" required>
+              <option>Food</option>
+              <option>Transport</option>
+              <option>Shopping</option>
+              <option>Education</option>
+              <option>Bills</option>
+              <option>Health</option>
+              <option>Salary</option>
+              <option>Freelance</option>
+              <option>Other</option>
+            </select>
+
+            <label for="date">Date</label>
+            <input id="date" type="date" required>
+
+            <button type="submit">+ Add Transaction</button>
+            <p id="message" role="status"></p>
+          </form>
+        </article>
+
+        <article class="panel" id="analytics">
+          <h2>Spending by Category</h2>
+          <p class="muted">Expense distribution</p>
+          <div id="categoryChart" class="chart">
+            <p class="muted">Add an expense to see your chart.</p>
+          </div>
+          <div id="categoryLegend"></div>
+        </article>
+      </section>
+
+      <section class="panel transactions-panel" id="transactions">
+        <div class="section-heading">
+          <div>
+            <h2>Transaction Records</h2>
+            <p class="muted">Your saved transactions</p>
+          </div>
+          <select id="filter">
+            <option value="all">All transactions</option>
+            <option value="income">Income only</option>
+            <option value="expense">Expenses only</option>
+          </select>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="transactionList"></tbody>
+          </table>
+        </div>
+        <p id="emptyState" class="muted">No transactions yet. Add your first transaction above.</p>
+        <button id="clearAll" class="danger-button" type="button">Clear All Records</button>
+      </section>
+
+      <footer>FinTrack · Personal Expense Tracker</footer>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
